@@ -14,7 +14,7 @@ always@(*)
 	begin
 		if(reset)
 			begin		
-				data_out<=0;
+				data_out=0;
 			
 			end
 		else
