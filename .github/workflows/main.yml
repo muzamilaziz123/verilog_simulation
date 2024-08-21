@@ -16,9 +16,9 @@ jobs:
         sudo apt-get install verilator iverilog
 
     - name: Lint Verilog Files
-      run: verilator --lint-only src/*.v
+      run: verilator --lint-only sources_1/new/arithunit.v
 
     - name: Run Tests with Icarus Verilog
       run: |
-        iverilog -o testbench.vvp testbench.v src/*.v
-        vvp testbench.vvp
+        iverilog -o sim_1/new/tb_arithunit.vvp sim_1/new/tb_arithunit.v sources_1/new/arithunit.v
+        vvp sim_1/new/tb_arithunit.vvp
