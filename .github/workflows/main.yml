@@ -21,4 +21,16 @@ jobs:
     - name: Run Tests with Icarus Verilog
       run: |
         iverilog -o sim_1/new/tb_arithunit.vvp sim_1/new/tb_arithunit.v sources_1/new/arithunit.v
-        vvp sim_1/new/tb_arithunit.vvp
+        vvp sim_1/new/tb_arithunit.vvp > simulation_output.log
+
+    - name: Verify Simulation Results
+      run: |
+        if grep -q "ERROR" simulation_output.log; then
+          echo "Simulation failed: Error found in simulation output."
+          exit 1
+        elif grep -q "PASS" simulation_output.log; then
+          echo "Simulation passed."
+        else
+          echo "Simulation results are inconclusive."
+          exit 1
+        fi
