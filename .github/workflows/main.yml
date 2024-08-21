@@ -1,0 +1,24 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install verilator iverilog
+
+    - name: Lint Verilog Files
+      run: verilator --lint-only src/*.v
+
+    - name: Run Tests with Icarus Verilog
+      run: |
+        iverilog -o testbench.vvp testbench.v src/*.v
+        vvp testbench.vvp
