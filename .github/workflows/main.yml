@@ -13,22 +13,21 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install verilator 
+        sudo apt-get install -y verilator g++ make
 
     - name: Lint Verilog Files
       run: verilator --lint-only sources_1/new/arithunit.v
 
     - name: Run Verilator Simulation
       run: |
-          # Step 1: Compile the Verilog files with Verilator
-          verilator --cc sources_1/new/arithunit.v --exe --build sim_1/new/tb_arithunit.v
+        # Step 1: Compile the Verilog files with Verilator
+        verilator --cc sources_1/new/arithunit.v --exe --build sim_1/new/tb_arithunit.cpp
 
-          # Step 2: Run the compiled simulation
-          ./obj_dir/Vyour_module
+        # Step 2: Run the compiled simulation
+        ./obj_dir/Varithunit
 
-    #- name: Run Tests with Icarus Verilog
-     # run: |
-        #iverilog -o sim_1/new/tb_arithunit.vvp sim_1/new/tb_arithunit.v sources_1/new/arithunit.v
-        #vvp sim_1/new/tb_arithunit.vvp > simulation_output.log
-
-     
+    # Optional: Run additional tests with Icarus Verilog
+    # - name: Run Tests with Icarus Verilog
+    #   run: |
+    #     iverilog -o sim_1/new/tb_arithunit.vvp sim_1/new/tb_arithunit.v sources_1/new/arithunit.v
+    #     vvp sim_1/new/tb_arithunit.vvp > simulation_output.log
