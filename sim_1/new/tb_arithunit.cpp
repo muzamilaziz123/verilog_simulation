@@ -27,15 +27,15 @@ int main(int argc, char** argv, char** env) {
 
         // Apply stimulus
         if (cycle == 10) {
-            top->data_1 = 16'hA5A5;
-            top->data_2 = 16'h5A5A;
-            top->op_sel = 2'b00; // Add
+            top->data_1 = 0xA5A5;
+            top->data_2 = 0x5A5A;
+            top->op_sel = 0b00; // Add
         } else if (cycle == 20) {
-            top->op_sel = 2'b01; // Subtract
+            top->op_sel = 0b01; // Subtract
         } else if (cycle == 30) {
-            top->op_sel = 2'b10; // Multiply
+            top->op_sel = 0b10; // Multiply
         } else if (cycle == 40) {
-            top->op_sel = 2'b11; // AND
+            top->op_sel = 0b11; // AND
         }
 
         // Simulate one clock cycle
