@@ -21,37 +21,6 @@ initial begin
     forever #5 clk = ~clk;
 end
 
-// Task to generate a single clock cycle event
-task wait_for_clock;
-    begin
-        #time_ns;
-    end
-endtask
-
-// Task to perform a reset sequence
-task reset_sequence;
-    begin
-        wait_for_clock;
-        reset <= 1;
-        wait_for_clock;
-        reset <= 0;
-    end
-endtask
-
-// Task to perform a data sequence with the given operation
-task data_sequence(input [1:0] op, input integer cycles);
-    begin
-        repeat (cycles) wait_for_clock;
-        #1 data_1 = {$random} % 10;
-        data_2 = {$random} % 10;
-        op_sel = op;
-        wait_for_clock;
-        $display("Data 1 = %d", data_1);
-        $display("Data 2 = %d", data_2);
-        $display("Result = %d", data_out);
-    end
-endtask
-
 initial begin
     $dumpfile("arithunit_waveform.vcd");
     $dumpvars(1, arithunit_instance);
@@ -63,22 +32,39 @@ initial begin
     op_sel = 0;
 
     // Test Case 1
-    reset_sequence;
-    data_sequence(2'b00, 1);
+   #10;
+    reset = 1;
+    #10;
+    reset = 0;
+    #10;
+    data_1 = 10;
+    data_2 = 20;
+    op_sel = 1;
 
-    // Test Case 2
-    reset_sequence;
-    data_sequence(2'b01, 2);
+    #10;
+     reset = 1;
+    #10;
+    reset = 0;
+    #10;
+    data_1 = 30;
+    data_2 = 40;
+    op_sel = 2;
 
-    // Test Case 3
-    reset_sequence;
-    data_sequence(2'b10, 3);
-
-    // Test Case 4
-    reset_sequence;
-    data_sequence(2'b11, 4);
+    #10;
+     reset = 1;
+    #10;
+    reset = 0;
+    #10;
+    data_1 = 0;
+    data_2 = 0;
+    op_sel = 3;
 
     $finish;
 end
 
 endmodule
+
+
+
+
+
