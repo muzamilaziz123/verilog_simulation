@@ -24,7 +24,7 @@ end
 // Task to generate a single clock cycle event
 task wait_for_clock;
     begin
-        @(posedge clk);
+        #time_ns;
     end
 endtask
 
