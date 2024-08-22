@@ -3,7 +3,7 @@ module tb_arithunit;
 reg clk;
 reg reset;
 reg [15:0] data_1; 
-reg [15:0] data_2;
+reg [15:0] data_2 ;
 reg [1:0] op_sel;
 wire [15:0] data_out;
 
@@ -32,58 +32,24 @@ initial begin
     op_sel = 0;
 
     // Test case 1
-    @(posedge clk);
-    reset = 1;
-    @(posedge clk);
-    reset = 0;
-
-    @(posedge clk);
-    data_1 = {$random} % 10;
-    data_2 = {$random} % 10;
-    op_sel = 0;
-    @(posedge clk);
-    $display("Data 1 = %d, Data 2 = %d, Result = %d", data_1, data_2, data_out);
+    reset_sequence();
+    data_sequence(0, 1);
 
     // Test case 2
-    @(posedge clk);
-    reset = 1;
-    @(posedge clk);
-    reset = 0;
-
-    @(posedge clk);
-    data_1 = {$random} % 10;
-    data_2 = {$random} % 10;
-    op_sel = 1;
-    @(posedge clk);
-    $display("Data 1 = %d, Data 2 = %d, Result = %d", data_1, data_2, data_out);
+    reset_sequence();
+    data_sequence(1, 1);
 
     // Test case 3
-    @(posedge clk);
-    reset = 1;
-    @(posedge clk);
-    reset = 0;
-
-    @(posedge clk);
-    data_1 = {$random} % 10;
-    data_2 = {$random} % 10;
-    op_sel = 2;
-    @(posedge clk);
-    $display("Data 1 = %d, Data 2 = %d, Result = %d", data_1, data_2, data_out);
+    reset_sequence();
+    data_sequence(2, 1);
 
     // Test case 4
-    @(posedge clk);
-    reset = 1;
-    @(posedge clk);
-    reset = 0;
-
-    @(posedge clk);
-    data_1 = {$random} % 10;
-    data_2 = {$random} % 10;
-    op_sel = 3;
-    @(posedge clk);
-    $display("Data 1 = %d, Data 2 = %d, Result = %d", data_1, data_2, data_out);
+    reset_sequence();
+    data_sequence(3, 1);
 
     $finish;
 end
+
+
 
 endmodule
