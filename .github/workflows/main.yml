@@ -13,10 +13,14 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y verilator g++ make
+        sudo apt-get install -y verilator g++ make yosys
 
     - name: Lint Verilog Files
       run: verilator --lint-only sources_1/new/arithunit.v
+
+    - name: Run Yosys Synthesis
+      run: |
+        yosys -p 'read_verilog sources_1/new/arithunit.v; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v'
 
     - name: Run Verilator Simulation
       run: |
@@ -25,9 +29,3 @@ jobs:
 
         # Step 2: Run the compiled simulation
         ./obj_dir/Varithunit
-
-    # Optional: Run additional tests with Icarus Verilog
-    # - name: Run Tests with Icarus Verilog
-    #   run: |
-    #     iverilog -o sim_1/new/tb_arithunit.vvp sim_1/new/tb_arithunit.v sources_1/new/arithunit.v
-    #     vvp sim_1/new/tb_arithunit.vvp > simulation_output.log
