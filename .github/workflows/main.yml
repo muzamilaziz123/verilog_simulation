@@ -15,8 +15,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y verilator g++ make yosys
 
-    #- name: Lint Verilog Files
-     # run: verilator --lint-only sources_1/new/arithunit.v
+    - name: Lint Verilog Files
+      run: verilator --lint-only sources_1/new/arithunit.v
 
     - name: Run Yosys Synthesis
       run: |
