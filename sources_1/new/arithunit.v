@@ -10,8 +10,8 @@ output reg [15:0] 	data_out
 
 );
 initial begin
-b = 0;  // This is not synthesizable
-    #5 b = 1;  // Non-synthesizable dela
+b <= 0;  // This is not synthesizable
+    #5 b <= 1;  // Non-synthesizable dela
 end
 always@(*)
 	begin
