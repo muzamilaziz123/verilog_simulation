@@ -5,11 +5,14 @@ input 				reset,
 input [15:0] 		data_1,
 input [15:0] 		data_2,
 input [1:0] 		op_sel,
+output wrie b,
 output reg [15:0] 	data_out 
 
 );
-
-
+initial begin
+b = 0;  // This is not synthesizable
+    #5 b = 1;  // Non-synthesizable dela
+end
 always@(*)
 	begin
 		if(reset)
