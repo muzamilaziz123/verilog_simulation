@@ -5,7 +5,7 @@ input 				reset,
 input [15:0] 		data_1,
 input [15:0] 		data_2,
 input [1:0] 		op_sel,
-output wrie b,
+output wire b,
 output reg [15:0] 	data_out 
 
 );
