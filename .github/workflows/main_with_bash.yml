@@ -1,4 +1,4 @@
-name: CI_bash
+name: CI
 
 on: [push, pull_request]
 
@@ -10,9 +10,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-
-    - name: Source and Run Script
-      shell: bash
+    - name: Trigger Local Script
       run: |
-        source run_ci.sh
-
+        echo "Triggering the local CI script..."
+        bash ./run_ci.sh
