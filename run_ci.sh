@@ -10,7 +10,7 @@ cd "$SIMULATION_DIR" || exit
 
 # Step 1: Lint Verilog Files
 echo "Running Verilator lint on $VERILOG_FILE..."
-verilator --lint-only "$VERILOG_FILE" 2>&1 | tee lint_output.log
+verilator --lint-only "sources_1/new$VERILOG_FILE" 2>&1 | tee lint_output.log
 
 # Step 2: Run Yosys Synthesis
 echo "Running Yosys synthesis on $VERILOG_FILE..."
