@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# Define Verilator installation check function
+check_verilator_installed() {
+    dpkg -l | grep -q 'verilator'  # Checks if Verilator is listed in the installed packages
+}
+
 # Install Verilator using apt-get if not already installed
-if ! command -v verilator &> /dev/null; then
+if ! check_verilator_installed; then
     echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
     sudo apt-get install -y verilator
