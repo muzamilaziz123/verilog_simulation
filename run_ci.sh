@@ -30,8 +30,9 @@ verilator --lint-only "$VERILOG_PATH" 2>&1 | tee lint_output.log
 echo "Running yosys on $VERILOG_FILE..."
 yosys -p "read_verilog $VERILOG_PATH; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v" 2>&1 | tee yosys_output.log
 
+echo "Running Simulation of tb.cpp..."
 verilator --cc "$VERILOG_FILE" --exe --build "$TB_VERILOG_FILE"2>&1 | tee verilator_compile.log
-./obj_dir/V"$TOP_MODULE" 2>&1 | tee verilator_simulation.log
+./obj_dir/V"$TB_VERILOG_FILE" 2>&1 | tee verilator_simulation.log
 
 
 
