@@ -25,7 +25,7 @@ VERILOG_FILE="arithunit.v"
 
 # Step 1: Lint Verilog Files
 echo "Running Verilator lint on $VERILOG_FILE..."
-verilator --lint-only "$VERILOG_FILE" 2>&1 | tee lint_output.log
+verilator --lint-only sources_1/new/"$VERILOG_FILE" 2>&1 | tee lint_output.log
 
 # Notify completion
 echo "Linting completed. Check lint_output.log for details."
