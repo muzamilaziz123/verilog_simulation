@@ -3,10 +3,10 @@
 # Define paths
 VERILOG_FILE="arithunit.v"
 TOP_MODULE="arithunit"
-SIMULATION_DIR="/mnt/c/Users/Muzamil Aziz/Desktop/Simulation"
+#SIMULATION_DIR="/mnt/c/Users/Muzamil Aziz/Desktop/Simulation"
 
 # Change directory to the simulation folder
-cd "$SIMULATION_DIR" || exit
+#cd "$SIMULATION_DIR" || exit
 
 # Step 1: Lint Verilog Files
 echo "Running Verilator lint on $VERILOG_FILE..."
