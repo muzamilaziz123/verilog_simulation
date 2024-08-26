@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define Verilator installation check function
+# Define Verilator installation check functions
 check_verilator_installed() {
     dpkg -l | grep -q 'verilator'  # Checks if Verilator is listed in the installed packages
 }
