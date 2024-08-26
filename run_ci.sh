@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define Verilator installation directory
+# Define Verilator installation directorys
 VERILATOR_INSTALL_DIR="/usr/bin/verilator"
 
 # Check if Verilator is installed and accessible
