@@ -37,7 +37,7 @@ yosys -p "read_verilog $VERILOG_PATH; synth -top arithunit; write_verilog -noatt
 
 # Step 3: Run Simulation with Verilator
 echo "Running Simulation of $TB_VERILOG_FILE..."
-verilator --cc "$VERILOG_FILE" --exe --build "$TB_VERILOG_PATH" 2>&1 | tee verilator_compile.log
+verilator --cc "$VERILOG_PATH" --exe --build "$TB_VERILOG_PATH" 2>&1 | tee verilator_compile.log
 
 # If the compilation was successful, run the simulation
 if [ -f "./obj_dir/Varithunit" ]; then
