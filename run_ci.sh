@@ -2,7 +2,7 @@
 
 # Define the expected path for Verilator executable
 VERILATOR_BIN="/usr/bin/verilator"
-
+verilator --version
 # Check if Verilator is installed and accessible
 if ! command -v verilator &> /dev/null; then
     echo "Verilator not found. Installing using apt-get..."
