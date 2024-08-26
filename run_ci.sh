@@ -10,7 +10,7 @@ verilator --version
 if ! command -v verilator &> /dev/null; then
     echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
-    sudo apt-get install -y verilator g++ make yosys
+#    sudo apt-get install -y verilator g++ make yosys
 else
     echo "Verilator is already installed."
 fi
