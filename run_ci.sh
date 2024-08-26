@@ -4,7 +4,7 @@
 VERILATOR_INSTALL_DIR="/usr/bin/verilator"
 
 # Check if Verilator is installed and accessible
-if ! command -v verilator &> /dev/null; then
+if ! Verilator --version; then
     echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
     sudo apt-get install -y verilator
