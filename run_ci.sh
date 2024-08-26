@@ -12,10 +12,7 @@ if [ ! -f "$VERILATOR_INSTALL_DIR/bin/verilator" ]; then
     echo "Building and installing Verilator..."
     mkdir -p "$VERILATOR_BUILD_DIR"
     cd "$VERILATOR_BUILD_DIR" || exit
-    git clone $VERILATOR_REPO -b $VERILATOR_BRANCH .
-    git checkout $VERILATOR_HASH
-    autoconf && ./configure --prefix="$VERILATOR_INSTALL_DIR" && make -j$(nproc)
-    make install
+    sudo apt-get install -y verilator 
 else
     echo "Verilator is already installed at $VERILATOR_INSTALL_DIR"
 fi
