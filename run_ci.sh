@@ -23,3 +23,4 @@ verilator --cc "$VERILOG_FILE" --exe --build "sim_1/new/tb_$TOP_MODULE.cpp" 2>&1
 
 # Notify completion
 echo "CI tasks completed. Check log files for details."
+
