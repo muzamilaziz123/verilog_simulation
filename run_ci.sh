@@ -2,13 +2,14 @@
 
 # Define the expected path for Verilator executable
 VERILATOR_BIN="/usr/bin/verilator"
-
+path="/"
 # Print Verilator version (for debugging)
 verilator --version
 
 # Check if Verilator is installed and accessible
-if ! command -v verilator &> /dev/null; then
-    echo "Verilator not found. Installing using apt-get..."
+#if ! command -v verilator &> /dev/null; then
+if [ ! -f "$path/usr/bin/verilator" ]; then 
+ echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
 #    sudo apt-get install -y verilator g++ make yosys
 else
