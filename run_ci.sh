@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# Define Verilator installation check functions
-check_verilator_installed() {
-    dpkg -l | grep -q 'verilator'  # Checks if Verilator is listed in the installed packages
-}
+# Define Verilator installation directory
+VERILATOR_INSTALL_DIR="/usr/bin/verilator"
 
-# Install Verilator using apt-get if not already installed
-if ! check_verilator_installed; then
+# Check if Verilator is installed and accessible
+if ! command -v verilator &> /dev/null; then
     echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
     sudo apt-get install -y verilator
 else
     echo "Verilator is already installed."
 fi
+
+# Update PATH if needed (typically not required for apt-get installs)
+export PATH="/usr/bin:$PATH"
 
 # Define paths for your Verilog project
 VERILOG_FILE="arithunit.v"
