@@ -1,3 +1,0 @@
-sh: 1: make: not found
-%Error: make -C obj_dir -f Varithunit.mk exitted with 127
-%Error: Command Failed /usr/bin/verilator_bin --cc sources_1/new/arithunit.v --exe --build sim_1/new/tb_arithunit.cpp
