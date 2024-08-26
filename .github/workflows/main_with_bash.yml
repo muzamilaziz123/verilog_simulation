@@ -1,4 +1,4 @@
-name: CI_with_bash
+name: CI
 
 on: [push, pull_request]
 
@@ -10,7 +10,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+
     - name: Run CI Script
       run: |
+        # Source the script and handle directory issues
+        if [ -d "/mnt/c/Users/Muzamil Aziz/Desktop/Simulation" ]; then
+          cd "/mnt/c/Users/Muzamil Aziz/Desktop/Simulation"
+        else
+          echo "Directory does not exist, running from current directory"
+        fi
         chmod +x ./run_ci.sh
         ./run_ci.sh
