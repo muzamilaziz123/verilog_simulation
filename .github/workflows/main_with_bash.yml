@@ -14,5 +14,5 @@ jobs:
     - name: Source and Run Script
       shell: bash
       run: |
-        source ./run_ci.sh
+        source run_ci.sh
 
