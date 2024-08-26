@@ -3,19 +3,20 @@
 # Define the expected path for Verilator executable
 VERILATOR_BIN="/usr/bin/verilator"
 path="/"
-# Print Verilator version (for debugging)
-verilator --version
+
 
 # Check if Verilator is installed and accessible
 #if ! command -v verilator &> /dev/null; then
 if [ ! -f "$path/usr/bin/verilator" ]; then 
  echo "Verilator not found. Installing using apt-get..."
-    sudo apt-get update
+#    sudo apt-get update
 #    sudo apt-get install -y verilator g++ make yosys
 else
     echo "Verilator is already installed."
 fi
 
+cd /mnt/c/Users/Muzamil Aziz/Desktop/Simulation/sim/verilog_simulation/verilog_simulation
+Verilator --version
 # Define paths for your Verilog project
 VERILOG_FILE="arithunit.v"
 TB_VERILOG_FILE="tb_arithunit.cpp"
