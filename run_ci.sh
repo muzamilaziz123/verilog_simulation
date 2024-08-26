@@ -7,7 +7,7 @@ verilator --version
 if ! command -v verilator &> /dev/null; then
     echo "Verilator not found. Installing using apt-get..."
     sudo apt-get update
-    sudo apt-get install -y verilator
+    sudo apt-get install -y verilator g++ make yosys
 else
     echo "Verilator is already installed."
 fi
@@ -25,6 +25,10 @@ fi
 # Step 1: Lint Verilog Files
 echo "Running Verilator lint on $VERILOG_FILE..."
 verilator --lint-only "$VERILOG_PATH" 2>&1 | tee lint_output.log
+
+echo "Running yosys on $VERILOG_FILE..."
+yosys -p "read_verilog $VERILOG_PATH; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v" 2>&1 | tee yosys_output.log
+
 
 # Notify completion
 echo "Linting completed. Check lint_output.log for details."
