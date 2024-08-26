@@ -14,9 +14,10 @@ path="/mnt/c/Users/Muzamil Aziz/Desktop/Simulation/sim/verilog_simulation/verilo
 #else
  #   echo "Verilator is already installed."
 #fi
+#export PATH="/usr/local/bin:/usr/bin:$PATH"
 
-cd "$path"
-Verilator --version
+pwd
+#Verilator --version
 # Define paths for your Verilog project
 VERILOG_FILE="arithunit.v"
 TB_VERILOG_FILE="tb_arithunit.cpp"
