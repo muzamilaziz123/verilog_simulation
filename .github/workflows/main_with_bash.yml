@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: [self-hosted]  # Use your self-hosted runners label if you have set one
+    runs-on: [self-hosted] 
 
     steps:
     - name: Checkout Code
@@ -14,7 +14,7 @@ jobs:
       id: cache-verilator
       uses: actions/cache@v3
       with:
-        path: /usr/local/bin/verilator
+        path: "/usr/local/bin/verilator"
         key: verilator-cache
 
     - name: Install Verilator if not cached
@@ -22,8 +22,9 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y verilator g++ make yosys
+      shell: bash
 
     - name: Trigger Local Script
       run: |
         echo "Triggering the local CI script..."
-        bash ./scripts/run_ci.sh
+        bash "./scripts/run_ci.sh"
