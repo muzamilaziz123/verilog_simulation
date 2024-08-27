@@ -21,7 +21,7 @@ jobs:
       if: steps.cache-verilator.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
-      
+        sudo apt-get install -y verilator g++ make yosys
 
     - name: Trigger Local Script
       run: |
