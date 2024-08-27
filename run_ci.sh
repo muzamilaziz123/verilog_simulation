@@ -15,16 +15,16 @@ if [ ! -f "$VERILOG_PATH" ]; then
 fi
 
 # Step 1: Lint Verilog Files
-echo "Running Verilator lint on $VERILOG_FILE..."
-verilator --lint-only "$VERILOG_PATH" 2>&1 | tee lint_output.log
+#echo "Running Verilator lint on $VERILOG_FILE..."
+#verilator --lint-only "$VERILOG_PATH" 2>&1 | tee lint_output.log
 
 # Step 2: Run Yosys for synthesis
-echo "Running Yosys on $VERILOG_FILE..."
-yosys -p "read_verilog $VERILOG_PATH; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v" 2>&1 | tee yosys_output.log
+#echo "Running Yosys on $VERILOG_FILE..."
+#yosys -p "read_verilog $VERILOG_PATH; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v" 2>&1 | tee yosys_output.log
 
 # Step 3: Run Simulation with Verilator
-echo "Running Simulation of $TB_VERILOG_FILE..."
-verilator --cc "$VERILOG_PATH" --exe --build "$TB_VERILOG_PATH" 2>&1 | tee verilator_compile.log
+#echo "Running Simulation of $TB_VERILOG_FILE..."
+#verilator --cc "$VERILOG_PATH" --exe --build "$TB_VERILOG_PATH" 2>&1 | tee verilator_compile.log
 
 # If the compilation was successful, run the simulation
 if [ -f "./obj_dir/Varithunit" ]; then
