@@ -10,15 +10,16 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Set up cache for Verilator
+    - name: Cache Verilator
       id: cache-verilator
       uses: actions/cache@v3
       with:
-        path: /usr/local/bin/verilator
+        path: |
+          /usr/local/bin/verilator
+          /usr/local/share/verilator
         key: verilator-cache
 
     - name: Trigger Local Script
       run: |
         echo "Triggering the local CI script..."
         bash ./run_ci.sh
-#chk it
