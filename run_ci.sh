@@ -15,6 +15,40 @@ path="/mnt/c/Users/Muzamil Aziz/Desktop/Simulation/sim/verilog_simulation/verilo
  #   echo "Verilator is already installed."
 #fi
 #export PATH="/usr/local/bin:/usr/bin:$PATH"
+#!/bin/bash
+
+# Define the expected path for Verilator
+VERILATOR_PATH="/usr/local/bin/verilator"
+
+# Check if Verilator is installed
+if ! command -v verilator &> /dev/null; then
+    echo "Verilator not found. Installing using apt-get..."
+    sudo apt-get update
+    sudo apt-get install -y verilator g++ make yosys
+
+    # Verify installation
+    if command -v verilator &> /dev/null; then
+        echo "Verilator installed successfully."
+    else
+        echo "Error: Verilator installation failed."
+        exit 1
+    fi
+else
+    echo "Verilator is already installed."
+fi
+
+# Check if Verilator is in the PATH
+if [[ ":$PATH:" != *":/usr/local/bin:"* ]]; then
+    echo "Adding Verilator to the system PATH..."
+    echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+    export PATH="/usr/local/bin:$PATH"
+    source ~/.bashrc
+else
+    echo "Verilator is already in the system PATH."
+fi
+
+# Notify completion
+echo "Setup completed. You can now use Verilator from any terminal session."
 
 pwd
 #Verilator --version
