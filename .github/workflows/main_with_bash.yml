@@ -14,7 +14,7 @@ jobs:
       id: cache-verilator
       uses: actions/cache@v3
       with:
-        path: sudo cd /usr/bin/verilator
+        path: /usr/bin/verilator
         key: verilator-cache
 
     - name: Install Verilator if not cached
