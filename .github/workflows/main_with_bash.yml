@@ -10,17 +10,20 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Cache Verilator
+    - name: Set up cache for Verilator
       id: cache-verilator
       uses: actions/cache@v3
       with:
-        path: |
-          /usr/local/bin/verilator
-          /usr/local/share/verilator
+        path: /usr/local/bin/verilator
         key: verilator-cache
+
+    - name: Install Verilator if not cached
+      if: steps.cache-verilator.outputs.cache-hit != 'true'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y verilator
 
     - name: Trigger Local Script
       run: |
         echo "Triggering the local CI script..."
         bash ./run_ci.sh
-#chkkkkk
