@@ -26,5 +26,5 @@ jobs:
     - name: Trigger Local Script
       run: |
         echo "Triggering the local CI script..."
-        bash ./run_ci.sh
+        bash ./scripts/run_ci.sh
 #chkk kr ab
