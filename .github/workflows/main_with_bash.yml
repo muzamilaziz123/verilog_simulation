@@ -21,3 +21,4 @@ jobs:
       run: |
         echo "Triggering the local CI script..."
         bash ./run_ci.sh
+#chk it
