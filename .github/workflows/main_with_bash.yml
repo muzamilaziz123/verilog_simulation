@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: [self-hosted]  # Use your self-hosted runner label if you have set one
+    runs-on: [self-hosted]  # Use your self-hosted runners label if you have set one
 
     steps:
     - name: Checkout Code
