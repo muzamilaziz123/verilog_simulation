@@ -16,9 +16,8 @@ jobs:
       with:
         path: |
           /usr/bin/verilator
-          /usr/local/bin  # If Verilator or its dependencies are in /usr/local/bin
-          /usr/local/share/verilator  # If Verilator stores additional files here
-          /usr/local/lib  # If there are libraries related to Verilator
+          /usr/local/bin
+          /usr/local/lib
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
@@ -26,16 +25,16 @@ jobs:
     - name: Verify Cache
       run: |
         echo "Checking cached files..."
-        ls -la /usr/bin | grep verilator
-        ls -la /usr/local/bin
-        ls -la /usr/local/share/verilator
-        ls -la /usr/local/lib
+        ls -la /usr/bin | grep verilator || true
+        ls -la /usr/local/bin || true
+        ls -la /usr/local/lib || true
 
     - name: Install Verilator if not cached
       if: steps.cache-verilator.outputs.cache-hit != 'true'
       run: |
+        sudo apt-get update
         sudo apt-get install -y verilator g++ make yosys
-        # Optionally, you might want to move Verilator to /usr/bin if it’s not there by default
+        # You might want to move Verilator to /usr/bin if it’s not there by default
       shell: bash
 
     - name: Trigger Local Script
@@ -43,4 +42,3 @@ jobs:
       run: |
         echo "Triggering the local CI script..."
         bash run_ci.sh
-        #......
