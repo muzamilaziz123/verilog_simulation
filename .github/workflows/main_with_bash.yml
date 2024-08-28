@@ -38,7 +38,7 @@ jobs:
       shell: bash
 
     - name: Trigger Local Script
-      working-directory: ${{ github.workspace }}/scripts
+      working-directory: ${{ github.workspace }}
       run: |
         echo "Triggering the local CI script..."
         bash run_ci.sh
