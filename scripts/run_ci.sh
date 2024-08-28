@@ -1,5 +1,12 @@
 #!/bin/bash
+echo "Current working directory: $(pwd)"
 
+# List files in the expected directories
+echo "Listing files in sources_1/new:"
+ls -la sources_1/new/
+
+echo "Listing files in sim_1/new:"
+ls -la sim_1/new/
 # Define paths for your Verilog project
 VERILOG_FILE="arithunit.v"
 TB_VERILOG_FILE="tb_arithunit.cpp"
