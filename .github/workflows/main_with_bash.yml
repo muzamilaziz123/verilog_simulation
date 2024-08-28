@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: [self-hosted] 
+    runs-on: [self-hosted]
 
     steps:
     - name: Checkout Code
@@ -25,7 +25,7 @@ jobs:
       shell: bash
 
     - name: Trigger Local Script
+      working-directory: ${{ github.workspace }}/scripts
       run: |
         echo "Triggering the local CI script..."
-        bash "./scripts/run_ci.sh"
-#fileSSSSSSS
+        bash run_ci.sh
