@@ -21,11 +21,11 @@ jobs:
       if: steps.cache-verilator.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
-        sudo apt-get install -y verilator g++ make yosys
+        sudo apt-get install -y verilator 
       shell: bash
 
-#    - name: Trigger Local Script
-#      run: |
-#        echo "Triggering the local CI script..."
-#        bash "./scripts/run_ci.sh"
+    - name: Trigger Local Script
+      run: |
+        echo "Triggering the local CI script..."
+        bash "./scripts/run_ci.sh"
 #fileSSSSSSSSSsssssss
