@@ -15,20 +15,27 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-          /usr/bin
-          /usr/local/bin
-          /usr/local/share/verilator
-          /usr/local/lib
+          /usr/bin/verilator
+          /usr/local/bin  # If Verilator or its dependencies are in /usr/local/bin
+          /usr/local/share/verilator  # If Verilator stores additional files here
+          /usr/local/lib  # If there are libraries related to Verilator
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
 
+    - name: Verify Cache
+      run: |
+        echo "Checking cached files..."
+        ls -la /usr/bin | grep verilator
+        ls -la /usr/local/bin
+        ls -la /usr/local/share/verilator
+        ls -la /usr/local/lib
+
     - name: Install Verilator if not cached
       if: steps.cache-verilator.outputs.cache-hit != 'true'
       run: |
-        sudo apt-get update
         sudo apt-get install -y verilator g++ make yosys
-        # Optionally, you can move Verilator to /usr/local if it's not there by default
+        # Optionally, you might want to move Verilator to /usr/bin if it’s not there by default
       shell: bash
 
     - name: Trigger Local Script
