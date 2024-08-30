@@ -16,7 +16,7 @@ jobs:
       with:
         path: |
           /usr/bin/verilator
-          /usr/share/verilator
+       #   /usr/share/verilator
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
@@ -25,7 +25,7 @@ jobs:
       run: |
         echo "Checking cached files..."
         ls -la /usr/bin | grep verilator || true
-        ls -la /usr/local/bin || true
+        ls -la /usr/share/ || true
         ls -la /usr/local/lib || true
 
     - name: Install Verilator if not cached
