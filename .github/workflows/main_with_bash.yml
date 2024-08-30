@@ -1,10 +1,11 @@
-name: CI_Bash
+name: CIBash
 
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -20,17 +21,13 @@ jobs:
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
-    
-  #  - name: Set permissions for Verilator 
-   #   run: sudo chmod -R a+rwx /usr/bin/verilator
 
-    #- name: Run Verilator
-     # run: /usr/bin/verilator --version
     - name: Verify Cache
       run: |
         echo "Checking cached files..."
         ls -la /usr/bin | grep verilator || true
-        
+        ls -la /usr/local/bin || true
+        ls -la /usr/local/lib || true
 
     - name: Install Verilator if not cached
       if: steps.cache-verilator.outputs.cache-hit != 'true'
@@ -45,5 +42,3 @@ jobs:
       run: |
         echo "Triggering the local CI script..."
         bash run_ci.sh
-
-
