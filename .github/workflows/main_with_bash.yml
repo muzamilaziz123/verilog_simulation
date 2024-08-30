@@ -6,8 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: power
-      run: su
     - name: Checkout Code
       uses: actions/checkout@v3
 
