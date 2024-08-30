@@ -20,7 +20,12 @@ jobs:
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
+    
+    - name: Set permissions for Verilator
+      run: sudo chmod -R a+rwx /usr/bin/verilator
 
+    - name: Run Verilator
+      run: /usr/bin/verilator --version
     - name: Verify Cache
       run: |
         echo "Checking cached files..."
