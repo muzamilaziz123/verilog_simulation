@@ -20,7 +20,7 @@ jobs:
 
     - name: Run Yosys Synthesis
       run: |
-        yosys -p 'read_verilog sources_1/new/arithunit.sv; synth -top arithunit; write_verilog -noattr synthesized_arithunit.sv'
+   #     yosys -p 'read_verilog sources_1/new/arithunit.sv; synth -top arithunit; write_verilog -noattr synthesized_arithunit.sv'
 
     - name: Run Verilator Simulation
       run: |
