@@ -29,12 +29,4 @@ jobs:
 
         # Step 2: Run the compiled simulation
         ./obj_dir/Varithunit
-    - name: Uploading VCD file
-      run: |
-        ls -al /home/runner/work/verilog_simulation/verilog_simulation/obj_dir
-
-    - name: Upload VCD file as an artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: cir_fifo_wave_vcd
-        path: /home/runner/work/verilog_simulation/verilog_simulation/obj_dir/arithunit.vcd
+  
