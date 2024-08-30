@@ -1,4 +1,4 @@
-name: CI
+name: CI_Bash
 
 on: [push, pull_request]
 
@@ -24,8 +24,8 @@ jobs:
   #  - name: Set permissions for Verilator 
    #   run: sudo chmod -R a+rwx /usr/bin/verilator
 
-    - name: Run Verilator
-      run: /usr/bin/verilator --version
+    #- name: Run Verilator
+     # run: /usr/bin/verilator --version
     - name: Verify Cache
       run: |
         echo "Checking cached files..."
