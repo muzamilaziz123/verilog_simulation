@@ -47,4 +47,3 @@ jobs:
         bash run_ci.sh
 
 
-        "update it for cache "
