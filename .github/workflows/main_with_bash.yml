@@ -14,30 +14,33 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-          /usr/bin/verilator
-          /usr/local/bin
-          /usr/local/lib
+          ~/.local/share/verilator
+          /usr/local/lib/verilator
         key: ${{ runner.os }}-verilator-${{ hashFiles('**/install_verilator.sh') }}
         restore-keys: |
           ${{ runner.os }}-verilator-
-    
-  #  - name: Set permissions for Verilator 
-   #   run: sudo chmod -R a+rwx /usr/bin/verilator
 
-    #- name: Run Verilator
-     # run: /usr/bin/verilator --version
     - name: Verify Cache
       run: |
         echo "Checking cached files..."
-        ls -la /usr/bin | grep verilator || true
-        
+        ls -la /usr/local/lib/verilator || echo "Verilator cache not found."
 
     - name: Install Verilator if not cached
       if: steps.cache-verilator.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
-        sudo apt-get install -y verilator g++ make yosys
-        # You might want to move Verilator to /usr/bin if it’s not there by default
+        sudo apt-get install -y autoconf flex bison g++ make
+        git clone https://github.com/verilator/verilator.git
+        cd verilator
+        git checkout stable
+        autoconf
+        ./configure
+        make -j$(nproc)
+        sudo make install
+        # Move to cache location
+        mkdir -p ~/.local/share/verilator
+        cp -r /usr/local/share/verilator ~/.local/share/verilator
+        cp -r /usr/local/bin/verilator_bin ~/.local/share/verilator
       shell: bash
 
     - name: Trigger Local Script
@@ -46,5 +49,3 @@ jobs:
         echo "Triggering the local CI script..."
         bash run_ci.sh
 
-
-        #........aaaaaa
