@@ -1,8 +1,9 @@
 #include <verilated.h>
+#include <verilated_vcd_c.h>  // Include VCD tracing header
 #include "Varithunit.h"
-//try 
+
 // Define the clock period (in simulation time units)
-#define CYCLE_TIME 10
+#define CYCLE_TIME 100
 
 // Main simulation function
 int main(int argc, char** argv, char** env) {
@@ -11,6 +12,12 @@ int main(int argc, char** argv, char** env) {
 
     // Create an instance of the Verilog module
     Varithunit* top = new Varithunit;
+
+    // Initialize VCD tracing
+    Verilated::traceEverOn(true);  // Enable tracing
+    VerilatedVcdC* tfp = new VerilatedVcdC;  // Create VCD trace object
+    top->trace(tfp, 99);  // Trace 99 levels of hierarchy
+    tfp->open("arithunit.vcd");  // Open the VCD file
 
     // Initialize simulation variables
     unsigned int cycle = 0;
@@ -41,8 +48,11 @@ int main(int argc, char** argv, char** env) {
         // Simulate one clock cycle
         top->clk = 1;
         top->eval();
+        tfp->dump(cycle * CYCLE_TIME - CYCLE_TIME/2);  // Dump VCD data for rising edge
+
         top->clk = 0;
         top->eval();
+        tfp->dump(cycle * CYCLE_TIME);  // Dump VCD data for falling edge
 
         // Print results
         if (cycle % 10 == 0) {
@@ -54,6 +64,8 @@ int main(int argc, char** argv, char** env) {
     }
 
     // Cleanup and exit
+    tfp->close();  // Close the VCD file
+    delete tfp;
     delete top;
     return 0;
 }
