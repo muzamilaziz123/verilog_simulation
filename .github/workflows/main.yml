@@ -16,16 +16,16 @@ jobs:
         sudo apt-get install -y verilator g++ make yosys
 
     - name: Lint Verilog Files
-      run: verilator --lint-only sources_1/new/arithunit.v
+      run: verilator --lint-only sources_1/new/arithunit.sv
 
     - name: Run Yosys Synthesis
       run: |
-        yosys -p 'read_verilog sources_1/new/arithunit.v; synth -top arithunit; write_verilog -noattr synthesized_arithunit.v'
+        yosys -p 'read_verilog sources_1/new/arithunit.sv; synth -top arithunit; write_verilog -noattr synthesized_arithunit.sv'
 
     - name: Run Verilator Simulation
       run: |
         # Step 1: Compile the Verilog files with Verilator
-        verilator --cc sources_1/new/arithunit.v --exe --build sim_1/new/tb_arithunit.cpp
+        verilator --cc sources_1/new/arithunit.sv --exe --build sim_1/new/tb_arithunit.cpp --trace
 
         # Step 2: Run the compiled simulation
         ./obj_dir/Varithunit
