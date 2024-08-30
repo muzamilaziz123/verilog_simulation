@@ -30,8 +30,7 @@ jobs:
       run: |
         echo "Checking cached files..."
         ls -la /usr/bin | grep verilator || true
-        ls -la /usr/local/bin || true
-        ls -la /usr/local/lib || true
+        
 
     - name: Install Verilator if not cached
       if: steps.cache-verilator.outputs.cache-hit != 'true'
