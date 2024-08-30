@@ -17,7 +17,7 @@ int main(int argc, char** argv, char** env) {
     Verilated::traceEverOn(true);  // Enable tracing
     VerilatedVcdC* tfp = new VerilatedVcdC;  // Create VCD trace object
     top->trace(tfp, 99);  // Trace 99 levels of hierarchy
-    tfp->open("arithunit.vcd");  // Open the VCD file
+    tfp->open("obj_dir/arithunit.vcd");  // Open the VCD file
 
     // Initialize simulation variables
     unsigned int cycle = 0;
